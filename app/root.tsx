@@ -13,13 +13,6 @@ import type { LinksFunction } from "@remix-run/node";
 import appStylesHref from "./app.css?url";
 import { getContacts } from "./data";
 
-type Contact = {
-  id: number;
-  first: string;
-  last: string;
-  favorite: boolean;
-};
-
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref },
 ];
@@ -30,7 +23,7 @@ export const loader = async () => {
 };
 
 export default function App() {
-  const { contacts }: { contacts: Contact[] } = useLoaderData();
+  const { contacts } = useLoaderData<typeof loader>();
 
   return (
     <html lang="en">
